@@ -1,0 +1,19 @@
+<div class="board">
+  <div *ngFor="let row of board" class="row">
+    <span *ngFor="let column of row" class="cell"
+          [ngClass]="{'food': column === 2, 'snake-body': column === 1}"></span>
+  </div>
+</div>
+<h3>DEBUG INFO</h3>
+<div>
+  <div><span> Status: </span> <span> {{status}} </span></div>
+  <div><span> Board Size: </span> <span> {{board.length}} x {{board[0].length}} </span></div>
+  <div><span> Snake Length: </span> <span> {{snake.length}} </span></div>
+  <div><span> Snake Direction: </span> <span> {{snake.direction}} </span></div>
+  <div><span> Snake Head Position: </span> <span> {{snake.head.y + 1}}, {{snake.head.x + 1}} </span></div>
+  <div><span> Food Position: </span> <span> {{food.y + 1}}, {{food.x + 1}} </span></div>
+</div>
+<div>
+  <label for="interval"> Clock Interval (ms): </label>
+  <input type="number" id="interval" [(ngModel)]="clockInterval">
+</div>

@@ -1,0 +1,28 @@
+.board {
+  background: crimson;
+  height: 300px;
+  width: 300px;
+  margin: 0;
+  padding: 0;
+  display: table;
+  .row {
+    height: 10px;
+    margin: 0;
+    padding: 0;
+    display: table-row;
+    .cell {
+      background: aquamarine;
+      height: 10px;
+      width: 10px;
+      display: table-cell;
+      margin: 0;
+      padding: 0;
+    }
+    .food {
+      background: red;
+    }
+    .snake-body {
+      background: black;
+    }
+  }
+}

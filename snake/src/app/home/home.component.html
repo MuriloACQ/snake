@@ -1,0 +1,11 @@
+<h2>WELCOME TO SNAKE GAME</h2>
+<button *ngIf="!showBoard" (click)="start()">Start</button>
+<button *ngIf="showBoard" (click)="reset()">Reset</button>
+<button *ngIf="showBoard" (click)="stop()">Stop</button>
+<app-board *ngIf="showBoard"></app-board>
+<div>
+  <h3>Config</h3>
+  <label for="ws"> Websocket url: </label>
+  <input type="text" id="ws" [(ngModel)]="wsUrl">
+</div>
+
