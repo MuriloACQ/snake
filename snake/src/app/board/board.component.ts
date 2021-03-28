@@ -45,18 +45,14 @@ export class BoardComponent implements OnInit {
     let availableDirections = this.snake.getFirstAvailableDirections(this.board);
     const adi = Math.floor(Math.random() * availableDirections.length);
     this.snake.direction = availableDirections[adi];
-    console.log('snake has been created on ', x, y);
-    console.log('snake initial direction is', this.snake.direction);
   }
 
   createFood(): void {
-    console.log('creating food');
     const x = Math.floor(Math.random() * this.board.length);
     const y = Math.floor(Math.random() * this.board[0].length);
     if(this.board[x][y] !== this.snake.boardId) {
       this.board[x][y] = 2;
       this.food = {x, y};
-      console.log('food has been created on ', x, y);
     } else {
       console.log('fuuu.. you should not use recursive function here');
       this.createFood();
@@ -93,7 +89,6 @@ export class BoardComponent implements OnInit {
     } catch (e) {
       clearInterval(this.clockIntervalId);
       this.clockIntervalId = null;
-      console.log('GAME OVER', e);
       this.status = 'game over';
     }
   }
@@ -106,7 +101,6 @@ export class BoardComponent implements OnInit {
     }
     const hasFood = this.verifyFood(newPosition);
     if(hasFood) {
-      console.log('EATING');
       this.snake.enlarge(this.board, newPosition.x, newPosition.y);
       this.board[newPosition.x][newPosition.y] = this.snake.boardId;
       this.createFood();
