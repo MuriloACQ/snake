@@ -37,7 +37,6 @@ export class BoardComponent implements OnInit {
   }
 
   createSnake(): void {
-    console.log('creating snake');
     const x = Math.floor(Math.random() * this.board.length);
     const y = Math.floor(Math.random() * this.board[0].length);
     this.board[x][y] = 1;
