@@ -13,6 +13,7 @@ export class BoardComponent implements OnInit {
   public board : number[][];
   public snake : Snake;
   public food : any;
+  public score : number = 0;
   public clockInterval : any = 150;
   private clockIntervalId: any;
   private avoidBackDirection: boolean = true;
@@ -70,6 +71,7 @@ export class BoardComponent implements OnInit {
   clock() {
     try {
       this.move();
+      this.score += this.snake.length;
       if(this.ws) {
         if(this.ws.readyState !== this.ws.OPEN) {
           clearInterval(this.clockIntervalId);
@@ -83,7 +85,8 @@ export class BoardComponent implements OnInit {
               x: this.snake.head.x,
               y: this.snake.head.y
             },
-            snakeDirection: this.snake.direction
+            snakeDirection: this.snake.direction,
+            score: this.score
           }));
         }
       }
@@ -114,7 +117,11 @@ export class BoardComponent implements OnInit {
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) :void {
-    switch (event.keyCode) {
+    this.changeDirection(event.keyCode);
+  }
+
+  changeDirection(code: number) {
+    switch (code) {
       case 39:
         this.snake.changeDirectionToRight(this.avoidBackDirection);
         break;

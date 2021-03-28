@@ -40,15 +40,21 @@ export class HomeComponent implements OnInit {
   connect() {
     if(!this.ws || (this.ws.readyState !== this.ws.OPEN && this.ws.readyState !== this.ws.CONNECTING)) {
       this.ws = new WebSocket(this.wsUrl);
-      this.ws.onmessage = (event: any) => {
-        console.log(event.data);
-      };
       this.ws.onopen = () => {
+        this.ws.onmessage = (event: any) => {
+          if(this.boardComponent) {
+            this.boardComponent.changeDirection(Number(event.data));
+          }
+        };
         this.boardComponent.ws = this.ws;
-        this.ws.send('connected');
       };
     } else {
       setTimeout(() => {
+        this.ws.onmessage = (event: any) => {
+          if(this.boardComponent) {
+            this.boardComponent.changeDirection(Number(event.data));
+          }
+        };
         this.boardComponent.ws = this.ws;
       }, 0);
     }
